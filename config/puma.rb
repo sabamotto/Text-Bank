@@ -13,7 +13,8 @@ port        ENV.fetch("PORT") { 3000 }
 
 # Specifies the `environment` that Puma will run in.
 #
-environment ENV.fetch("RAILS_ENV") { "development" }
+rails_env = ENV.fetch("RAILS_ENV") { "development" }
+environment rails_env
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
@@ -51,6 +52,12 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 #   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
 # end
 #
+
+# Prevent timeout in byebug breakpoint.
+#
+if rails_env == "development"
+  worker_timeout ENV.fetch("RAILS_TIMEOUT") { 3600 }
+end
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
