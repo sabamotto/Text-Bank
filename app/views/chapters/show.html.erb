@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>タイトル:</strong>
+  <%= @chapter.title %>
+</p>
+
+<p>
+  <strong>著者:</strong>
+  <%= @chapter.author %>
+</p>
+
+<p>
+  <strong>説明:</strong>
+  <%= @chapter.description %>
+</p>
+
+<%= link_to '編集', edit_chapter_path(@chapter) %> |
+<%= link_to '一覧に戻る', chapters_path %>
