@@ -1,0 +1,40 @@
+body {
+  background-color: #fff;
+  color: #333;
+  margin: 1em;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 18px;
+  line-height: 1.5em;
+}
+
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  &.serif {
+    font-family: times, "Times New Roman", serif;
+  }
+  &.mono {
+    font-family: "Osaka-Mono", "Monaco", courier, monospace;
+  }
+}
+
+pre {
+  background-color: #eee;
+  padding: .5em;
+}
+code {
+  font-family: "Osaka-Mono", "Monaco", courier, monospace;
+}
+
+a {
+  color: #000;
+
+  &:visited {
+    color: #666;
+  }
+
+  &:hover {
+    color: #fff;
+    background-color: #000;
+    text-decoration: underline;
+  }
+}
