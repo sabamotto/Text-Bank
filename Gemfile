@@ -36,6 +36,10 @@ gem 'jbuilder', '~> 2.5'
 # Use standard rails i18n
 gem 'rails-i18n'
 
+# Use Markdown and Syntax highlight
+gem 'redcarpet', '~> 2.3.0'
+gem 'coderay'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
