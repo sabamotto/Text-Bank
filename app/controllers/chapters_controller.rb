@@ -1,10 +1,12 @@
 class ChaptersController < ApplicationController
-  before_action :set_chapter, only: [:show, :edit, :update, :destroy]
+  before_action :set_chapter, only: [
+    :show, :edit, :update, :destroy, :raise_order, :lower_order
+  ]
 
   # GET /chapters
   # GET /chapters.json
   def index
-    @chapters = Chapter.all
+    @chapters = Chapter.order(:order_id).all
   end
 
   # GET /chapters/1
@@ -25,6 +27,7 @@ class ChaptersController < ApplicationController
   # POST /chapters.json
   def create
     @chapter = Chapter.new(chapter_params)
+    @chapter.order_id = Chapter.count + 1
 
     respond_to do |format|
       if @chapter.save
@@ -46,6 +49,34 @@ class ChaptersController < ApplicationController
         format.json { render :show, status: :ok, location: @chapter }
       else
         format.html { render :edit }
+        format.json { render json: @chapter.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /chapters/1/raise_order
+  # PATCH/PUT /chapters/1/raise_order.json
+  def raise_order
+    respond_to do |format|
+      if @chapter.raise_order(params[:scale]&.scale)
+        format.html { redirect_to chapters_url, notice: 'Chapter was successfully raised order.' }
+        format.json { render :show, status: :ok, location: @chapter }
+      else
+        format.html { redirect_to chapters_url, notice: 'Chapter was failed raised order. Already did you?' }
+        format.json { render json: @chapter.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /chapters/1/lower_order
+  # PATCH/PUT /chapters/1/lower_order.json
+  def lower_order
+    respond_to do |format|
+      if @chapter.lower_order(params[:scale]&.scale)
+        format.html { redirect_to chapters_url, notice: 'Chapter was successfully lowered order.' }
+        format.json { render :show, status: :ok, location: @chapter }
+      else
+        format.html { redirect_to chapters_url, notice: 'Chapter was failed lowered order. Already did you?' }
         format.json { render json: @chapter.errors, status: :unprocessable_entity }
       end
     end

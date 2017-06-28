@@ -1,0 +1,27 @@
+<%= form_with(model: attachment, local: true) do |form| %>
+  <% if attachment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= attachment.errors.count %>件のエラーにより処理を続行できませんでした:</h2>
+
+      <ul>
+      <% attachment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :attachment_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mime %>
+    <%= form.text_field :mime, id: :attachment_mime %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

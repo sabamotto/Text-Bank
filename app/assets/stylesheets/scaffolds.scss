@@ -39,6 +39,11 @@ body.scaffolds {
     min-width: 32px;
   }
 
+  table.vertical th {
+    border: 1px solid #ccc;
+    border-right: 2px solid #aaa;
+  }
+
   td {
     padding: 2px 8px 7px;
     border: 1px solid #ccc;
@@ -85,5 +90,14 @@ body.scaffolds {
 
   label {
     display: block;
+  }
+
+  input[type=text] {
+    width: 30em;
+  }
+
+  textarea {
+    width: 40em;
+    height: 10em;
   }
 }

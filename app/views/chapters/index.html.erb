@@ -8,8 +8,9 @@
       <th>ID</th>
       <th>タイトル</th>
       <th>著者</th>
-      <th>説明</th>
+      <th>更新日時</th>
       <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -19,10 +20,12 @@
         <td><%= chapter.id %></td>
         <td><%= chapter.title %></td>
         <td><%= chapter.author %></td>
-        <td><%= chapter.description %></td>
+        <td><%= l chapter.updated_at, format: :short %></td>
         <td><%= link_to '詳細', chapter %></td>
         <td><%= link_to '編集', edit_chapter_path(chapter) %></td>
         <td><%= link_to '削除', chapter, method: :delete, data: { confirm: '本当に削除してもよろしいですか。' } %></td>
+        <td><%= link_to '▼', lower_order_chapter_path(chapter), method: :patch if chapter.order_id < Chapter.count %></td>
+        <td><%= link_to '▲', raise_order_chapter_path(chapter), method: :patch if chapter.order_id > 1 %></td>
       </tr>
     <% end %>
   </tbody>

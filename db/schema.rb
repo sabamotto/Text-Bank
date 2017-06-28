@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516160952) do
+ActiveRecord::Schema.define(version: 20170608133115) do
+
+  create_table "attachments", force: :cascade do |t|
+    t.string "name", limit: 128
+    t.string "mime", limit: 64
+    t.binary "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "chapters", force: :cascade do |t|
     t.string "title", limit: 128
@@ -18,6 +26,8 @@ ActiveRecord::Schema.define(version: 20170516160952) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "order_id", default: 0, null: false
+    t.index ["order_id"], name: "index_chapters_on_order_id", unique: true
   end
 
 end

@@ -12,7 +12,27 @@
 
 <p>
   <strong>説明:</strong>
-  <%= markdown(@chapter.description).html_safe %>
+  <%= markdown(@chapter.description) %>
+</p>
+
+<p>
+  <strong>レコードプロパティ:</strong>
+  <table class="vertical">
+    <tbody>
+      <tr>
+        <th>ID</th>
+        <td><%= @chapter.id %></td>
+      </tr>
+      <tr>
+        <th>作成日時</th>
+        <td><%= l @chapter.created_at, format: :long %></td>
+      </tr>
+      <tr>
+        <th>更新日時</th>
+        <td><%= l @chapter.updated_at, format: :long %></td>
+      </tr>
+    </tbody>
+  </table>
 </p>
 
 <%= link_to '編集', edit_chapter_path(@chapter) %> |
