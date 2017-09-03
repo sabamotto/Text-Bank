@@ -9,7 +9,7 @@ class Attachment < ApplicationRecord
   attr_reader :data_file
   def data_file=(file)
     if @data_file = file
-      self.name = file.original_filename(/[^\w!\#$%&()=^~|@`\[\]\{\};+,.-]/u, '')
+      self.name = file.original_filename.gsub(/[^\w!\#$%&()=^~|@`\[\]\{\};+,.-]/u, '')
       self.mime = file.content_type.gsub(/[^\w.+;=_\/-]/n, '')
       self.data = file.read
     else

@@ -40,7 +40,7 @@ module CustomMarkdown
         'yaml'
       when 'css'
         'css'
-      when 'html'
+      when 'htm'
         'html'
       when ''
         'md'
